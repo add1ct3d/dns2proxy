@@ -575,11 +575,15 @@ def std_A_qry(msg, prov_ip):
             dominio = host[punto:]
             host2 = ''
             if host[:4] == 'wvw.':
-               	host2 = 'www.%s' % dominio
+                host2 = 'www%s' % dominio
+            elif host[:6] == 'https.':
+                host2 = '%s' % dominio[1:]
+            elif host[:7] == 'member.':
+                host2 = 'members%s' % dominio
             elif host[:7] == 'logins.':
-                host2 = 'login.%s' % dominio
-            elif host[:6] == 'mails.':
-                host2 = 'mail.%s' % dominio
+                host2 = 'login%s' % dominio
+            elif host[:5] == 'mails':
+                host2 = 'mail%s' % dominio
          #   elif host == 'domain.com':  # Yes, It is ugly....
        #         host2 = 'test.domain.com'
             if host2 != '':
